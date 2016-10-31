@@ -25,6 +25,7 @@ export default class ChannelInviteModal extends React.Component {
         super(props);
 
         this.onChange = this.onChange.bind(this);
+        this.onHide = this.onHide.bind(this);
         this.handleInviteError = this.handleInviteError.bind(this);
         this.nextPage = this.nextPage.bind(this);
         this.search = this.search.bind(this);
@@ -37,6 +38,7 @@ export default class ChannelInviteModal extends React.Component {
         this.state = {
             users: null,
             total: teamStats.member_count - channelStats.member_count,
+            show: true,
             search: false
         };
     }
@@ -69,6 +71,10 @@ export default class ChannelInviteModal extends React.Component {
             users: UserStore.getProfileListNotInChannel(this.props.channel.id),
             total: teamStats.member_count - channelStats.member_count
         });
+    }
+
+    onHide() {
+        this.setState({show: false});
     }
 
     handleInviteError(err) {
@@ -139,8 +145,9 @@ export default class ChannelInviteModal extends React.Component {
         return (
             <Modal
                 dialogClassName='more-modal'
-                show={this.props.show}
-                onHide={this.props.onHide}
+                show={this.state.show}
+                onHide={this.onHide}
+                onExited={this.props.onHide}
             >
                 <Modal.Header closeButton={true}>
                     <Modal.Title>
@@ -159,7 +166,7 @@ export default class ChannelInviteModal extends React.Component {
                     <button
                         type='button'
                         className='btn btn-default'
-                        onClick={this.props.onHide}
+                        onClick={this.onHide}
                     >
                         <FormattedMessage
                             id='channel_invite.close'
@@ -173,7 +180,6 @@ export default class ChannelInviteModal extends React.Component {
 }
 
 ChannelInviteModal.propTypes = {
-    show: React.PropTypes.bool.isRequired,
     onHide: React.PropTypes.func.isRequired,
     channel: React.PropTypes.object.isRequired
 };

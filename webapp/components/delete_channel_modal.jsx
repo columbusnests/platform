@@ -18,6 +18,9 @@ export default class DeleteChannelModal extends React.Component {
         super(props);
 
         this.handleDelete = this.handleDelete.bind(this);
+        this.onHide = this.onHide.bind(this);
+
+        this.state = {show: true};
     }
 
     handleDelete() {
@@ -35,6 +38,10 @@ export default class DeleteChannelModal extends React.Component {
                 AsyncClient.dispatchError(err, 'handleDelete');
             }
         );
+    }
+
+    onHide() {
+        this.setState({show: false});
     }
 
     render() {
@@ -55,8 +62,9 @@ export default class DeleteChannelModal extends React.Component {
 
         return (
             <Modal
-                show={this.props.show}
-                onHide={this.props.onHide}
+                show={this.state.show}
+                onHide={this.onHide}
+                onExited={this.props.onHide}
             >
                 <Modal.Header closeButton={true}>
                     <h4 className='modal-title'>
@@ -80,7 +88,7 @@ export default class DeleteChannelModal extends React.Component {
                     <button
                         type='button'
                         className='btn btn-default'
-                        onClick={this.props.onHide}
+                        onClick={this.onHide}
                     >
                         <FormattedMessage
                             id='delete_channel.cancel'
@@ -105,7 +113,6 @@ export default class DeleteChannelModal extends React.Component {
 }
 
 DeleteChannelModal.propTypes = {
-    show: React.PropTypes.bool.isRequired,
     onHide: React.PropTypes.func.isRequired,
     channel: React.PropTypes.object.isRequired
 };
