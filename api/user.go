@@ -2622,7 +2622,6 @@ func searchUsers(c *Context, w http.ResponseWriter, r *http.Request) {
 	}
 
 	searchOptions := map[string]bool{}
-	searchOptions[store.USER_SEARCH_OPTION_USERNAME_ONLY] = true
 	searchOptions[store.USER_SEARCH_OPTION_ALLOW_INACTIVE] = props.AllowInactive
 
 	var uchan store.StoreChannel
@@ -2686,6 +2685,9 @@ func autocompleteUsersInChannel(c *Context, w http.ResponseWriter, r *http.Reque
 	if !HasPermissionToChannelContext(c, channelId, model.PERMISSION_READ_CHANNEL) {
 		return
 	}
+
+	searchOptions := map[string]bool{}
+	searchOptions[store.USER_SEARCH_OPTION_NAMES_ONLY] = true
 
 	uchan := Srv.Store.User().SearchInChannel(channelId, term, map[string]bool{})
 	nuchan := Srv.Store.User().SearchNotInChannel(teamId, channelId, term, map[string]bool{})
