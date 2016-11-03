@@ -37,7 +37,7 @@
         "RestrictCustomEmojiCreation": "none"
     },
     "TeamSettings": {
-        "SiteName": "Mattermost",
+        "SiteName": "PGNests",
         "MaxUsersPerTeam": 1000,
         "EnableTeamCreation": true,
         "EnableUserCreation": true,
