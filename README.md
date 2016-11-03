@@ -12,9 +12,9 @@ Try out Mattermost:
 - [Join the Mattermost Contributor's server](https://pre-release.mattermost.com/) (latest nightly builds, unstable)
 - [Join the Mattermost Demo server](https://demo.mattermost.com) (latest stable version)
 
-Deploy on Heroku 
+Deploy on Heroku LOL
 
-[![Deploy a Preview](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/mattermost/mattermost-heroku)
+[![Deploy a Preview](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/columbusnests/platform)
 
 _Note: Heroku preview does not include email or persistent storage_
 
